@@ -1,15 +1,15 @@
 :root {
-  --blue: #1647d8;
-  --blue-dark: #0a2c8f;
-  --blue-deep: #071c58;
-  --blue-pale: #edf3ff;
+  --blue: #1d46cf;
+  --blue-dark: #142f8a;
+  --blue-deep: #0d2056;
+  --blue-pale: #eef2fb;
   --white: #ffffff;
   --ink: #071632;
   --muted: #52617d;
   --line: #dce5f6;
   --font-display: "Manrope", Arial, sans-serif;
   --font-body: "DM Sans", Arial, sans-serif;
-  --shadow: 0 24px 70px rgba(12, 48, 139, 0.14);
+  --shadow: 0 24px 70px rgba(20, 47, 138, 0.14);
 }
 
 *,
@@ -82,6 +82,19 @@ textarea {
   transition: border-color 180ms ease, box-shadow 180ms ease;
 }
 
+.site-header::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  transform: scaleX(var(--scroll-progress, 0));
+  transform-origin: left;
+  background: var(--blue);
+  transition: transform 80ms linear;
+}
+
 .site-header.is-scrolled {
   border-color: var(--line);
   box-shadow: 0 10px 35px rgba(7, 22, 50, 0.06);
@@ -127,12 +140,30 @@ textarea {
 }
 
 .nav-links > a:not(.nav-cta) {
+  position: relative;
   transition: color 160ms ease;
+}
+
+.nav-links > a:not(.nav-cta)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -7px;
+  left: 0;
+  height: 2px;
+  transform: scaleX(0);
+  background: var(--blue);
+  transition: transform 180ms ease;
 }
 
 .nav-links > a:not(.nav-cta):hover,
 .nav-links > a:not(.nav-cta):focus-visible {
   color: var(--blue);
+}
+
+.nav-links > a:not(.nav-cta):hover::after,
+.nav-links > a:not(.nav-cta):focus-visible::after {
+  transform: scaleX(1);
 }
 
 .nav-cta {
@@ -225,13 +256,13 @@ h1 {
 .button-primary {
   background: var(--blue);
   color: var(--white);
-  box-shadow: 0 14px 30px rgba(22, 71, 216, 0.22);
+  box-shadow: 0 14px 30px rgba(29, 70, 207, 0.22);
 }
 
 .button-primary:hover,
 .button-primary:focus-visible {
   background: var(--blue-dark);
-  box-shadow: 0 18px 34px rgba(22, 71, 216, 0.28);
+  box-shadow: 0 18px 34px rgba(29, 70, 207, 0.28);
 }
 
 .button-secondary {
@@ -241,8 +272,11 @@ h1 {
 }
 
 .hero-visual {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
   position: relative;
   padding: 22px 0 70px 30px;
+  perspective: 1000px;
 }
 
 .hero-visual::before {
@@ -260,16 +294,19 @@ h1 {
   display: grid;
   place-items: center;
   overflow: hidden;
-  border: 1px solid rgba(22, 71, 216, 0.13);
+  border: 1px solid rgba(29, 70, 207, 0.13);
   border-radius: 30px;
   background: var(--white);
   box-shadow: var(--shadow);
+  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition: transform 180ms ease-out, box-shadow 220ms ease;
 }
 
 .logo-frame img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  padding: clamp(18px, 4vw, 42px);
+  object-fit: contain;
 }
 
 .offer-card {
@@ -286,8 +323,20 @@ h1 {
   border-radius: 22px;
   background: var(--blue);
   color: var(--white);
-  box-shadow: 0 24px 60px rgba(10, 44, 143, 0.3);
-  animation: offer-float 4.8s ease-in-out infinite;
+  isolation: isolate;
+  box-shadow: 0 24px 60px rgba(20, 47, 138, 0.3);
+  animation: offer-float 4.2s ease-in-out infinite, offer-shadow 2s ease-in-out infinite;
+}
+
+.offer-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border: 2px solid rgba(255, 255, 255, 0.68);
+  border-radius: inherit;
+  pointer-events: none;
+  animation: offer-ring 2s ease-out infinite;
 }
 
 .offer-card::after {
@@ -320,6 +369,8 @@ h1 {
   font-size: clamp(2rem, 4vw, 2.8rem);
   line-height: 0.98;
   letter-spacing: -0.055em;
+  transform-origin: left bottom;
+  animation: offer-text-pulse 2s ease-in-out infinite;
 }
 
 .hero-enter {
@@ -357,6 +408,7 @@ h1 {
   width: 72px;
   height: 1px;
   background: rgba(255, 255, 255, 0.55);
+  animation: line-breathe 3s ease-in-out infinite;
 }
 
 .section {
@@ -381,6 +433,7 @@ h2 {
 }
 
 .subject-card {
+  position: relative;
   min-height: 350px;
   display: flex;
   flex-direction: column;
@@ -389,12 +442,29 @@ h2 {
   border: 1px solid var(--line);
   border-radius: 26px;
   background: var(--blue-pale);
-  transition: transform 220ms ease, box-shadow 220ms ease;
+  overflow: hidden;
+  transition: transform 260ms cubic-bezier(0.2, 0.75, 0.25, 1), box-shadow 260ms ease;
+}
+
+.subject-card::after {
+  content: "";
+  position: absolute;
+  top: -110px;
+  right: -110px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(29, 70, 207, 0.08);
+  transition: transform 420ms cubic-bezier(0.2, 0.75, 0.25, 1);
 }
 
 .subject-card:hover {
-  transform: translateY(-7px);
+  transform: translateY(-9px) scale(1.008);
   box-shadow: var(--shadow);
+}
+
+.subject-card:hover::after {
+  transform: scale(1.55);
 }
 
 .subject-card h3 {
@@ -416,15 +486,26 @@ h2 {
   color: var(--white);
 }
 
+.subject-card-blue::after {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .subject-card-blue p {
   color: rgba(255, 255, 255, 0.75);
 }
 
 .subject-number {
+  position: relative;
+  z-index: 1;
   color: var(--blue);
   font-family: var(--font-display);
   font-size: 0.85rem;
   font-weight: 800;
+  transition: transform 260ms ease;
+}
+
+.subject-card:hover .subject-number {
+  transform: translateX(6px);
 }
 
 .subject-card-blue .subject-number {
@@ -436,18 +517,7 @@ h2 {
 }
 
 .about-intro {
-  display: grid;
-  grid-template-columns: 1fr 0.72fr;
-  align-items: end;
-  gap: 80px;
   margin-bottom: 64px;
-}
-
-.about-intro > p {
-  margin-bottom: 5px;
-  color: var(--muted);
-  font-size: clamp(1.08rem, 2vw, 1.3rem);
-  line-height: 1.7;
 }
 
 .team-grid {
@@ -461,11 +531,11 @@ h2 {
   border: 1px solid var(--line);
   border-radius: 22px;
   background: var(--white);
-  transition: transform 220ms ease, box-shadow 220ms ease;
+  transition: transform 260ms cubic-bezier(0.2, 0.75, 0.25, 1), box-shadow 260ms ease;
 }
 
 .person-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px) rotate(-0.35deg);
   box-shadow: 0 18px 45px rgba(7, 22, 50, 0.1);
 }
 
@@ -479,11 +549,11 @@ h2 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 500ms ease;
+  transition: transform 650ms cubic-bezier(0.2, 0.75, 0.25, 1);
 }
 
 .person-card:hover img {
-  transform: scale(1.025);
+  transform: scale(1.055);
 }
 
 .person-info {
@@ -584,7 +654,7 @@ h2 {
 .contact-form input:focus,
 .contact-form textarea:focus {
   border-color: var(--blue);
-  box-shadow: 0 0 0 4px rgba(22, 71, 216, 0.12);
+  box-shadow: 0 0 0 4px rgba(29, 70, 207, 0.12);
 }
 
 .contact-form fieldset {
@@ -633,7 +703,7 @@ h2 {
 }
 
 .check-option input:focus-visible + span {
-  outline: 3px solid rgba(22, 71, 216, 0.22);
+  outline: 3px solid rgba(29, 70, 207, 0.22);
   outline-offset: 2px;
 }
 
@@ -665,6 +735,12 @@ h2 {
 .contact-person {
   padding: 24px 27px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+  transition: padding 220ms ease, background 220ms ease;
+}
+
+.contact-person:hover {
+  padding-left: 34px;
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .contact-person:last-child {
@@ -681,12 +757,14 @@ h2 {
   width: fit-content;
   color: rgba(255, 255, 255, 0.72);
   font-size: 0.93rem;
-  transition: color 160ms ease;
+  overflow-wrap: anywhere;
+  transition: color 160ms ease, transform 160ms ease;
 }
 
 .contact-person a:hover,
 .contact-person a:focus-visible {
   color: var(--white);
+  transform: translateX(3px);
 }
 
 .site-footer {
@@ -714,14 +792,27 @@ h2 {
 
 .js .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 650ms cubic-bezier(0.2, 0.75, 0.25, 1), transform 650ms cubic-bezier(0.2, 0.75, 0.25, 1);
+  transform: translateY(34px) scale(0.992);
+  transition: opacity 700ms cubic-bezier(0.2, 0.75, 0.25, 1), transform 700ms cubic-bezier(0.2, 0.75, 0.25, 1);
 }
 
 .js .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
+
+.js .contact-list.reveal .contact-person {
+  opacity: 0;
+  transform: translateX(18px);
+}
+
+.js .contact-list.reveal.is-visible .contact-person {
+  animation: contact-in 520ms cubic-bezier(0.2, 0.75, 0.25, 1) forwards;
+}
+
+.js .contact-list.reveal.is-visible .contact-person:nth-child(2) { animation-delay: 70ms; }
+.js .contact-list.reveal.is-visible .contact-person:nth-child(3) { animation-delay: 140ms; }
+.js .contact-list.reveal.is-visible .contact-person:nth-child(4) { animation-delay: 210ms; }
 
 .team-grid .reveal:nth-child(2),
 .subject-grid .reveal:nth-child(2) {
@@ -737,7 +828,31 @@ h2 {
 
 @keyframes offer-float {
   0%, 100% { transform: translateY(0) rotate(-1deg); }
-  50% { transform: translateY(-9px) rotate(1deg); }
+  50% { transform: translateY(-11px) rotate(1deg); }
+}
+
+@keyframes offer-shadow {
+  0%, 100% { box-shadow: 0 24px 60px rgba(20, 47, 138, 0.3); }
+  50% { box-shadow: 0 28px 72px rgba(29, 70, 207, 0.48); }
+}
+
+@keyframes offer-ring {
+  0% { opacity: 0.72; transform: scale(0.98); }
+  70%, 100% { opacity: 0; transform: scale(1.13); }
+}
+
+@keyframes offer-text-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.045); }
+}
+
+@keyframes line-breathe {
+  0%, 100% { transform: scaleX(0.72); opacity: 0.55; }
+  50% { transform: scaleX(1); opacity: 1; }
+}
+
+@keyframes contact-in {
+  to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes soft-shape {
@@ -804,6 +919,7 @@ h2 {
 
   .offer-card {
     right: -2px;
+    width: min(280px, 84%);
   }
 
   .statement-inner {
@@ -818,14 +934,12 @@ h2 {
   }
 
   .subject-grid,
-  .about-intro,
   .form-row {
     grid-template-columns: 1fr;
   }
 
   .about-intro {
-    align-items: start;
-    gap: 26px;
+    margin-bottom: 46px;
   }
 
   .team-grid {
@@ -854,6 +968,11 @@ h2 {
 
   .person-photo {
     aspect-ratio: 4 / 4.1;
+  }
+
+  .offer-card {
+    min-height: 138px;
+    padding: 19px 20px;
   }
 }
 
