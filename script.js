@@ -3,13 +3,8 @@ document.documentElement.classList.add("js");
 const header = document.querySelector(".site-header");
 const heroVisual = document.querySelector(".hero-visual");
 const reveals = document.querySelectorAll(".reveal");
-const year = document.querySelector("#year");
 const form = document.querySelector("#contact-form");
 const formStatus = document.querySelector("#form-status");
-
-if (year) {
-  year.textContent = new Date().getFullYear();
-}
 
 const setHeaderState = () => {
   header?.classList.toggle("is-scrolled", window.scrollY > 12);

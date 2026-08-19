@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Reading & writing and math tutoring from four Seattle Prep juniors."
+      content="HSPT, homework help, test prep, essays, reading &amp; writing, and math tutoring from Seattle Prep juniors."
     />
     <meta name="theme-color" content="#1d46cf" />
     <title>Seattle Prep Tutors</title>
@@ -24,11 +24,17 @@
     <header class="site-header" id="top">
       <nav class="nav shell" aria-label="Main navigation">
         <a class="brand" href="#top" aria-label="Seattle Prep Tutors home">
-          <span class="brand-mark" aria-hidden="true">SP</span>
+          <img
+            class="brand-logo"
+            src="assets/seattle-prep-logo-placeholder.png"
+            alt="Seattle Prep logo"
+            width="56"
+            height="56"
+          />
           <span>Seattle Prep Tutors</span>
         </a>
         <div class="nav-links">
-          <a href="#subjects">Subjects</a>
+          <a href="#services">Services</a>
           <a href="#about">About us</a>
           <a class="nav-cta" href="#contact">Contact us</a>
         </div>
@@ -38,12 +44,12 @@
     <main id="main-content">
       <section class="hero shell" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow hero-enter">Reading &amp; writing / Math</p>
+          <p class="eyebrow hero-enter">HSPT / Homework help / Test prep</p>
           <h1 class="hero-enter" id="hero-title">
             Tutoring from Seattle Prep juniors.
           </h1>
           <p class="hero-summary hero-enter">
-            Reading &amp; writing and math tutoring.
+            HSPT, homework help, test prep, essays, reading &amp; writing, and math.
           </p>
           <div class="hero-actions hero-enter">
             <a class="button button-primary" href="#contact">Contact us</a>
@@ -55,15 +61,23 @@
           <div class="logo-frame">
             <img
               src="assets/seattle-prep-logo-placeholder.png"
-              alt="Placeholder for the Seattle Prep logo"
+              alt="Seattle Prep logo"
               width="900"
               height="520"
             />
           </div>
-          <div class="offer-card" aria-label="Back to school offer: first class free">
-            <span>Back to school offer</span>
+        </div>
+      </section>
+
+      <section class="offer-wrap shell reveal" aria-label="Back to school offer">
+        <div class="offer-banner">
+          <span class="offer-shape offer-shape-one" aria-hidden="true"></span>
+          <span class="offer-shape offer-shape-two" aria-hidden="true"></span>
+          <div class="offer-copy">
+            <p>Back to school offer</p>
             <strong>First class free.</strong>
           </div>
+          <a class="offer-button" href="#contact">Contact us</a>
         </div>
       </section>
 
@@ -75,22 +89,19 @@
         </div>
       </section>
 
-      <section class="section shell" id="subjects" aria-labelledby="subjects-title">
+      <section class="section shell" id="services" aria-labelledby="services-title">
         <div class="section-heading reveal">
-          <p class="eyebrow">Subjects</p>
-          <h2 id="subjects-title">What we offer</h2>
+          <p class="eyebrow">Services</p>
+          <h2 id="services-title">What we offer</h2>
         </div>
-        <div class="subject-grid">
-          <article class="subject-card reveal">
-            <span class="subject-number" aria-hidden="true">01</span>
-            <h3>Reading &amp; Writing</h3>
-            <p>Available for tutoring.</p>
-          </article>
-          <article class="subject-card subject-card-blue reveal">
-            <span class="subject-number" aria-hidden="true">02</span>
-            <h3>Math</h3>
-            <p>Available for tutoring.</p>
-          </article>
+        <div class="services-list">
+          <div class="service-row reveal"><span>01</span><h3>HSPT Comprehensive Package</h3></div>
+          <div class="service-row reveal"><span>02</span><h3>HSPT</h3></div>
+          <div class="service-row reveal"><span>03</span><h3>Homework Help</h3></div>
+          <div class="service-row reveal"><span>04</span><h3>Test Prep</h3></div>
+          <div class="service-row reveal"><span>05</span><h3>Essays</h3></div>
+          <div class="service-row reveal"><span>06</span><h3>Reading &amp; Writing</h3></div>
+          <div class="service-row reveal"><span>07</span><h3>Math</h3></div>
         </div>
       </section>
 
@@ -176,7 +187,7 @@
           <div class="contact-heading reveal">
             <p class="eyebrow eyebrow-light">Contact us</p>
             <h2 id="contact-title">Start with a message.</h2>
-            <p>Select a subject and send the team a message, or contact any tutor directly.</p>
+            <p>Select one or more services and send the team a message, or contact any tutor directly.</p>
           </div>
 
           <div class="contact-grid">
@@ -200,14 +211,34 @@
               </div>
 
               <fieldset>
-                <legend>Subject</legend>
+                <legend>Services</legend>
                 <div class="subject-options">
                   <label class="check-option">
-                    <input type="checkbox" name="subjects" value="Reading & Writing" />
+                    <input type="checkbox" name="services" value="HSPT Comprehensive Package" />
+                    <span>HSPT Comprehensive Package</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="services" value="HSPT" />
+                    <span>HSPT</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="services" value="Homework Help" />
+                    <span>Homework Help</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="services" value="Test Prep" />
+                    <span>Test Prep</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="services" value="Essays" />
+                    <span>Essays</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="services" value="Reading & Writing" />
                     <span>Reading &amp; Writing</span>
                   </label>
                   <label class="check-option">
-                    <input type="checkbox" name="subjects" value="Math" />
+                    <input type="checkbox" name="services" value="Math" />
                     <span>Math</span>
                   </label>
                 </div>
@@ -252,10 +283,8 @@
     <footer class="site-footer">
       <div class="shell footer-inner">
         <a class="brand footer-brand" href="#top">
-          <span class="brand-mark" aria-hidden="true">SP</span>
           <span>Seattle Prep Tutors</span>
         </a>
-        <p>&copy; <span id="year">2026</span> Seattle Prep Tutors</p>
       </div>
     </footer>
   </body>

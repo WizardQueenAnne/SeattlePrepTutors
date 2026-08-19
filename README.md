@@ -1,6 +1,6 @@
 # Seattle Prep Tutors website
 
-A responsive static website for Jack, Quinn, Paul, and Matisse. The site uses royal blue and white, includes lightweight animations, and is ready for Netlify.
+A responsive static website for Seattle Prep Tutors. Services include the HSPT Comprehensive Package, HSPT, homework help, test prep, essays, reading & writing, and math. The site includes lightweight animations and is ready for Netlify.
 
 ## Images
 
